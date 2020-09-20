@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView
 import requests
 from newsapi import NewsApiClient
 from .forms import SearchForm
-newsapi = NewsApiClient(api_key='4aa081052e754088b9fa90f7f10ca1b1')
+newsapi = NewsApiClient(api_key)
 q = ""
 # Create your views here.
 def HomePage(request):
