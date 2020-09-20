@@ -1,0 +1,49 @@
+<head>
+  {% load static %}
+  
+  <!-- Compiled and minified CSS -->
+    <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>News Reporter</title>
+</head>
+{% block content %}
+<nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><i class="material-icons"></i>Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href = "{% url 'home' %}"> Home </a></li>
+        <li>
+          <form action="/search/" method="post">
+		        {% csrf_token %}
+		        {{ form.as_p }}
+            <input type="submit" value="Submit">
+          </form>
+        </li>
+        <!-- <li><a href="https://stackoverflow.com/questions/36324889/how-to-send-a-request-to-another-server-in-a-django-view">click me</a></li> -->
+      </ul>
+    </div>
+  </nav>
+<br>
+<br>
+<br>
+  <div class="row">
+    {% for article in top_headlines.articles %}
+    
+    <div class="col s12 m6">
+      
+      <div class="card small blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{article.title}}</span>
+          <p>{{article.description}}</p>
+        </div>
+        <div class="card-action">
+          
+         <a href= {{ article.url }} target = blank>Read more</a>
+        </div>
+      </div>
+      
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
